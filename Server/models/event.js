@@ -1,0 +1,43 @@
+const mongoose = require('mongoose');
+
+
+const eventSchema = new mongoose.Schema({
+    title: {
+        type: String,
+        required: true
+    },
+    description: {
+        type: String,
+        required: true
+    },
+    Date: {
+
+        type: Date,
+        required: true
+    },
+    location: {
+        type: String,
+        required: true
+    },
+    cateogry: {
+        type: String,
+        required: true
+    },
+    totalSeats: {
+        type: Number,
+        required: true
+    },
+    availableSeats: {
+        type: Number,
+        required: true
+    },
+    ticketPrice: {
+        type: Number,
+        required: true
+    },
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    }
+}, { timestamps: true })
