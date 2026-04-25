@@ -13,7 +13,7 @@ app.use(cors());
 app.use(express.json());
 app.use('/api/auth', auth);
 app.use('/api/event', event)
-app.use('/api/events', booking)
+app.use('/api/booking', booking)
 
 // connect to database
 mongoose.connect(process.env.MONGODB_URL)

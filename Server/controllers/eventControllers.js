@@ -29,6 +29,56 @@ exports.getEventById = async(req, res) => {
 }
 
 
-exports.createEvent = aync(req, res) => {
-    const
+exports.createEvent = async(req, res) => {
+    const { title, description, Date, location, cateogry, totalSeats, ticketPrice, imageUrl } = req.body
+    try {
+        const event = await Event.create({
+            title,
+            description,
+            Date,
+            location,
+            cateogry,
+            totalSeats,
+            ticketPrice,
+            imageUrl,
+        })
+        res.status(201).json(event)
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
+
+exports.updateEvent = async(req, res) => {
+    const { title, description, Date, location, cateogry, totalSeats, ticketPrice, imageUrl } = req.body;
+    try {
+        const event = await Event.findByIdAndUpdates(req.params.id, {
+            title,
+            description,
+            Date,
+            location,
+            cateogry,
+            totalSeats,
+            ticketPrice,
+            imageUrl,
+        }, { new: true })
+        if (!event) {
+            return res.status(404).json({ error: "event not found" })
+        }
+        res.json(event)
+
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
+}
+
+exports.deleteEvent = async(req, res) => {
+    try {
+        const event = await Event.findByIdAndDelete(req.params.id);
+        if (!event) {
+            return res.status(404).json({ error: "event not found" })
+        }
+        res.json({ message: "event deleted succfully" })
+    } catch (error) {
+        res.status(500).json({ error: error.message })
+    }
 }

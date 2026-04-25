@@ -1,16 +1,24 @@
 const express = require('express')
 const router = express.Router();
 const { admin, protect } = require('../middlewares/auth')
+const {
+    getEventById,
+    getAllEvents,
+    createEvent,
+    updateEvent,
+    deleteEvent
+
+} = require('../controllers/eventControllers')
 
 //get all routes
 
-router.get('/', getAllevents);
+router.get('/', getAllEvents);
 
 //get event by id
 router.get('/:id', getEventById);
 
 //create event (admin only)
-router.post('/', protect, admin, creatEvent)
+router.post('/', protect, admin, createEvent)
 
 //update event
 
