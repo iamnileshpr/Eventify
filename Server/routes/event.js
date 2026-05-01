@@ -26,6 +26,6 @@ router.put('/:id', protect, admin, updateEvent)
 
 //Delete event(admin only)
 
-router.delete(':id' / protect, admin, deleteEvent)
+router.delete('/:id', protect, admin, deleteEvent)
 
 module.exports = router;

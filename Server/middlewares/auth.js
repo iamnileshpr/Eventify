@@ -4,7 +4,7 @@
 
  //to check user is login or not
  const protect = async(req, res, next) => {
-     let token = req.headers.authorization && req.headers.authorization.startWith('Bearer') ? req.headers.authorization.split(' ')[1] : null
+     let token = req.headers.authorization && req.headers.authorization.startsWith('Bearer') ? req.headers.authorization.split(' ')[1] : null
      if (token) {
          try {
              const decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -14,7 +14,7 @@
              }
              next();
          } catch (error) {
-             return res.status(401).json({ mesage: "not authorized " })
+             return res.status(401).json({ message: "not authorized " })
          }
      }
  }
@@ -24,7 +24,7 @@
      if (req.user && req.user.role == 'admin') {
          next();
      } else {
-         return res.status(403).json({ mesage: "forbidden" })
+         return res.status(403).json({ message: "forbidden" })
 
      }
  }
